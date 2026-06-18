@@ -35,6 +35,7 @@ public class ItemCardapio extends javax.swing.JPanel {
         lblIcone = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(220, 220, 220)));
         setMaximumSize(new java.awt.Dimension(570, 106));
 
         lblNome.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -51,6 +52,7 @@ public class ItemCardapio extends javax.swing.JPanel {
         lblPreco.setText("R$00,00");
 
         pnlIcone.setBackground(new java.awt.Color(102, 10, 23));
+        pnlIcone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 20, 33)));
 
         lblIcone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bebida-50.png"))); // NOI18N
@@ -85,7 +87,7 @@ public class ItemCardapio extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                    .addComponent(lblDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(lblPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -106,7 +108,7 @@ public class ItemCardapio extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(lblPreco)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -8,6 +8,7 @@ import com.astaxdev.cardapio.model.Categoria;
 import com.astaxdev.cardapio.model.Item;
 import com.astaxdev.cardapio.util.BancoDeDados;
 import com.astaxdev.cardapio.view.cardapio.item.ItemCardapio;
+import com.astaxdev.cardapio.view.pedido.TelaPedido;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,7 @@ public class TelaCardapio extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
         sclCardapio = new javax.swing.JScrollPane();
         pnlRaiz = new javax.swing.JPanel();
+        btnPedido = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(220, 220, 220));
         setPreferredSize(new java.awt.Dimension(621, 470));
@@ -101,6 +103,14 @@ public class TelaCardapio extends javax.swing.JPanel {
         pnlRaiz.setLayout(new javax.swing.BoxLayout(pnlRaiz, javax.swing.BoxLayout.Y_AXIS));
         sclCardapio.setViewportView(pnlRaiz);
 
+        btnPedido.setBackground(new java.awt.Color(123, 16, 32));
+        btnPedido.setForeground(new java.awt.Color(220, 220, 220));
+        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mais-18.png"))); // NOI18N
+        btnPedido.setText("Pedido Customizado");
+        btnPedido.setBorderPainted(false);
+        btnPedido.setFocusPainted(false);
+        btnPedido.addActionListener(this::btnPedidoActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +118,10 @@ public class TelaCardapio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addComponent(sclCardapio))
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -116,13 +129,19 @@ public class TelaCardapio extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblTitulo)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sclCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(sclCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,8 +161,13 @@ public class TelaCardapio extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPesquisarFocusLost
 
+    private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
+        new TelaPedido("Customizado", banco.getSessao()).setVisible(true);
+    }//GEN-LAST:event_btnPedidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPedido;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlRaiz;
     private javax.swing.JScrollPane sclCardapio;

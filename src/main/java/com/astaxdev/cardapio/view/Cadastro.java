@@ -56,10 +56,12 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel9.add(txtNomeCad, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 115, 240, -1));
 
         lblNome.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(15, 15, 15));
         lblNome.setText("Nome:");
         jPanel9.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 118, -1, -1));
 
         lblSenha.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(15, 15, 15));
         lblSenha.setText("Senha:");
         jPanel9.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 149, -1, -1));
 
@@ -67,6 +69,8 @@ public class Cadastro extends javax.swing.JFrame {
         btnCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setBorderPainted(false);
+        btnCadastrar.setFocusPainted(false);
         btnCadastrar.addActionListener(this::btnCadastrarActionPerformed);
         jPanel9.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
         jPanel9.add(pswSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 146, 240, -1));
@@ -75,6 +79,7 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel9.add(pswConfirmaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 177, 240, -1));
 
         lblConfirmaSenha.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblConfirmaSenha.setForeground(new java.awt.Color(15, 15, 15));
         lblConfirmaSenha.setText("Confirmar Senha:");
         jPanel9.add(lblConfirmaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 180, -1, -1));
 
@@ -104,6 +109,7 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel9.add(lblAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 380, 37));
 
         lblTitulo.setFont(new java.awt.Font("Bodoni MT Condensed", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(15, 15, 15));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Fazer cadastro");
         jPanel9.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 380, -1));

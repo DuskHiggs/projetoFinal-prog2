@@ -57,14 +57,18 @@ public class Login extends javax.swing.JFrame {
         });
         txtNome.addActionListener(this::txtNomeActionPerformed);
 
+        lblNome.setForeground(new java.awt.Color(15, 15, 15));
         lblNome.setText("Nome:");
 
+        lblSenha.setForeground(new java.awt.Color(15, 15, 15));
         lblSenha.setText("Senha:");
 
         btnLogin.setBackground(new java.awt.Color(102, 10, 23));
         btnLogin.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
+        btnLogin.setBorderPainted(false);
+        btnLogin.setFocusPainted(false);
         btnLogin.addActionListener(this::btnLoginActionPerformed);
 
         lblCadastro.setBackground(new java.awt.Color(102, 10, 23));
@@ -99,6 +103,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         lblTitulo.setFont(new java.awt.Font("Bodoni MT Condensed", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(15, 15, 15));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Bem vindo!");
 

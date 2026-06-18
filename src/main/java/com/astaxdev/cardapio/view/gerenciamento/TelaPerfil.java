@@ -139,16 +139,20 @@ public class TelaPerfil extends javax.swing.JPanel {
         });
         sclTabela.setViewportView(tblUsuarios);
 
-        btnDeletar.setBackground(new java.awt.Color(255, 102, 102));
+        btnDeletar.setBackground(new java.awt.Color(144, 38, 53));
         btnDeletar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDeletar.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletar.setText("Deletar");
+        btnDeletar.setBorderPainted(false);
+        btnDeletar.setFocusPainted(false);
         btnDeletar.addActionListener(this::btnDeletarActionPerformed);
 
-        btnSalvar.setBackground(new java.awt.Color(102, 0, 51));
+        btnSalvar.setBackground(new java.awt.Color(102, 10, 23));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
+        btnSalvar.setBorderPainted(false);
+        btnSalvar.setFocusPainted(false);
         btnSalvar.addActionListener(this::btnSalvarActionPerformed);
 
         txtNome.setText("Nome");
