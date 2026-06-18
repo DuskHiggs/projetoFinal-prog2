@@ -15,6 +15,10 @@ public class Usuario {
         return cargo;
     }
     
+    public void setPerfil(TipoUsuario cargo) {
+        this.cargo = cargo;
+    }
+    
     public Usuario(String username, String senha, TipoUsuario cargo) {
         this.id = contador++;
         this.username = username;

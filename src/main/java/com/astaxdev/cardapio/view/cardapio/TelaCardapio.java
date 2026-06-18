@@ -6,6 +6,7 @@ package com.astaxdev.cardapio.view.cardapio;
 
 import com.astaxdev.cardapio.model.Categoria;
 import com.astaxdev.cardapio.model.Item;
+import com.astaxdev.cardapio.util.BancoDeDados;
 import com.astaxdev.cardapio.view.cardapio.item.ItemCardapio;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -17,26 +18,20 @@ import javax.swing.Box;
  * @author astaxgg
  */
 public class TelaCardapio extends javax.swing.JPanel {
-    private List<Item> itens;
+    private BancoDeDados banco = BancoDeDados.getInstance();
     /**
      * Creates new form Cardapio
      */
     public TelaCardapio() {
         initComponents();
-        
-        this.itens = new ArrayList<>();
-        itens.add(new Item("Hambúrguer Artesanal", "Pão brioche.", 35.50, Categoria.LANCHE));
-        itens.add(new Item("Batata Frita Especial", "Batata rústica.", 22.00, Categoria.PORCAO));
-        itens.add(new Item("Soda Italiana", "Sabor maçã verde.", 12.00, Categoria.BEBIDA));
-        itens.add(new Item("Pudim de Leite", "Receita tradicional.", 15.00, Categoria.SOBREMESA));
-        
+       
         renderizarItens("");
     }
     
     public void renderizarItens(String filtro) {
         pnlRaiz.removeAll();
         
-        for (Item i : itens) {
+        for (Item i : banco.getItens()) {
             ItemCardapio novo = new ItemCardapio();
             String nome = i.getNome();
             
@@ -73,7 +68,7 @@ public class TelaCardapio extends javax.swing.JPanel {
         setBackground(new java.awt.Color(220, 220, 220));
         setPreferredSize(new java.awt.Dimension(621, 470));
 
-        txtPesquisar.setBackground(new java.awt.Color(153, 153, 153));
+        txtPesquisar.setBackground(new java.awt.Color(204, 204, 204));
         txtPesquisar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtPesquisar.setForeground(new java.awt.Color(51, 51, 51));
         txtPesquisar.setHorizontalAlignment(javax.swing.JTextField.LEFT);

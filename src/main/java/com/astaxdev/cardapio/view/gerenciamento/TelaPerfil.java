@@ -10,11 +10,12 @@ import com.astaxdev.cardapio.util.BancoDeDados;
 import com.astaxdev.cardapio.view.Cadastro;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author astaxggA
+ * @author astaxgg
  */
 public class TelaPerfil extends javax.swing.JPanel {
     private int posicaoTabela = -1;                    
@@ -25,7 +26,10 @@ public class TelaPerfil extends javax.swing.JPanel {
         initComponents();
         atualizarTabela();
         btnDeletar.setEnabled(false);
-        btnAlterarSenha.setEnabled(false);
+        btnSalvar.setEnabled(false);
+        cbxCargo.setEnabled(false);
+        txtNome.setEnabled(false);
+        pswSenha.setEnabled(false);
     }
 
     /**
@@ -37,60 +41,64 @@ public class TelaPerfil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        pnlHeader = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        lblImagem = new javax.swing.JLabel();
+        pnlConteudo = new javax.swing.JPanel();
+        sclTabela = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
         btnDeletar = new javax.swing.JButton();
-        btnAlterarSenha = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        cbxCargo = new javax.swing.JComboBox<>();
+        lblNome = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
+        lblCargo = new javax.swing.JLabel();
+        pswSenha = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(220, 220, 220));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel6.setText("Gerenciamento de usuários");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(15, 15, 15));
+        lblTitulo.setText("Gerenciamento de usuários");
 
-        jLabel7.setText("Gerencie os usuários do sistema");
+        lblSubtitulo.setForeground(new java.awt.Color(15, 15, 15));
+        lblSubtitulo.setText("Gerencie os usuários do sistema");
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-people-24.png"))); // NOI18N
+        lblImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-people-24.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addComponent(lblImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblSubtitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel11.setFocusable(false);
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setText("Usuários Cadastrados");
+        pnlConteudo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlConteudo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        pnlConteudo.setForeground(new java.awt.Color(255, 255, 255));
+        pnlConteudo.setFocusable(false);
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,7 +121,7 @@ public class TelaPerfil extends javax.swing.JPanel {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -129,7 +137,7 @@ public class TelaPerfil extends javax.swing.JPanel {
                 tblUsuariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblUsuarios);
+        sclTabela.setViewportView(tblUsuarios);
 
         btnDeletar.setBackground(new java.awt.Color(255, 102, 102));
         btnDeletar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -137,38 +145,87 @@ public class TelaPerfil extends javax.swing.JPanel {
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(this::btnDeletarActionPerformed);
 
-        btnAlterarSenha.setBackground(new java.awt.Color(102, 0, 51));
-        btnAlterarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAlterarSenha.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterarSenha.setText("Alterar senha");
-        btnAlterarSenha.addActionListener(this::btnAlterarSenhaActionPerformed);
+        btnSalvar.setBackground(new java.awt.Color(102, 0, 51));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(this::btnSalvarActionPerformed);
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
+        txtNome.setText("Nome");
+
+        cbxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrador", "Normal" }));
+
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(15, 15, 15));
+        lblNome.setText("Nome");
+
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(15, 15, 15));
+        lblSenha.setText("Senha Nova");
+
+        lblCargo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCargo.setForeground(new java.awt.Color(15, 15, 15));
+        lblCargo.setText("Cargo");
+
+        pswSenha.setText("jPasswordField1");
+        pswSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pswSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pswSenhaFocusLost(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlConteudoLayout = new javax.swing.GroupLayout(pnlConteudo);
+        pnlConteudo.setLayout(pnlConteudoLayout);
+        pnlConteudoLayout.setHorizontalGroup(
+            pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConteudoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAlterarSenha)
+                .addGroup(pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sclTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                    .addGroup(pnlConteudoLayout.createSequentialGroup()
+                        .addGroup(pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlConteudoLayout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addGap(71, 71, 71)
+                                .addComponent(lblSenha))
+                            .addGroup(pnlConteudoLayout.createSequentialGroup()
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeletar))
-                    .addComponent(jScrollPane1))
+                        .addGroup(pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlConteudoLayout.createSequentialGroup()
+                                .addComponent(cbxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeletar)
+                                .addGap(2, 2, 2))
+                            .addGroup(pnlConteudoLayout.createSequentialGroup()
+                                .addComponent(lblCargo)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+        pnlConteudoLayout.setVerticalGroup(
+            pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConteudoLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(lblSenha)
+                    .addComponent(lblCargo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar)
                     .addComponent(btnDeletar)
-                    .addComponent(btnAlterarSenha))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sclTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -179,76 +236,100 @@ public class TelaPerfil extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-
         posicaoTabela = tblUsuarios.getSelectedRow();    
         btnDeletar.setEnabled(true);
-        btnAlterarSenha.setEnabled(true);
+        btnSalvar.setEnabled(true);
         id = (int) tblUsuarios.getValueAt(posicaoTabela, 0);
-
+        preencherCampos(id);
     }//GEN-LAST:event_tblUsuariosMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        
-        
         for (Usuario u : banco.getUsuarios()){
             if(u.getId() == id){
+                if (u.getId() == banco.getSessao().getId()) {
+                    JOptionPane.showMessageDialog(this, "Você não pode deletar o seu proprio cadastro!");
+                    break;
+                }
+                
                 banco.getUsuarios().remove(u);
+                limparCampos();
+                
                 break;
             }
         }    
+        
         id = 0;
+        posicaoTabela = -1;
         atualizarTabela();
         btnDeletar.setEnabled(false);
     }//GEN-LAST:event_btnDeletarActionPerformed
 
-    private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
-      System.out.println("Digite a senha: ");
-      Scanner sc = new Scanner(System.in);
-      String senha = sc.nextLine();
-         for (Usuario u : banco.getUsuarios()){
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        for (Usuario u : banco.getUsuarios()){
             if(u.getId() == id){
+                if (u.getId() == banco.getSessao().getId()) {
+                    JOptionPane.showMessageDialog(this, "Você não pode alterar o seu proprio cadastro!");
+                    break;
+                }
+                
+                String senha = String.valueOf(pswSenha.getPassword());
+                u.setPerfil(cbxCargo.getSelectedItem() == "Administrador" ? TipoUsuario.ADMINISTRADOR : TipoUsuario.PADRAO);
+                u.setUsername(txtNome.getText());
                 u.setSenha(senha);
+                limparCampos();
+                
                 break;
             }
         }  
         
+        atualizarTabela();
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    }//GEN-LAST:event_btnAlterarSenhaActionPerformed
+    private void pswSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswSenhaFocusGained
+        pswSenha.setEchoChar((char)0);
+    }//GEN-LAST:event_pswSenhaFocusGained
+
+    private void pswSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswSenhaFocusLost
+        pswSenha.setEchoChar('*');
+    }//GEN-LAST:event_pswSenhaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarSenha;
     private javax.swing.JButton btnDeletar;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<String> cbxCargo;
+    private javax.swing.JLabel lblCargo;
+    private javax.swing.JLabel lblImagem;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlConteudo;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPasswordField pswSenha;
+    private javax.swing.JScrollPane sclTabela;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
-private void atualizarTabela(){
-    DefaultTableModel tabelaUSuarios = (DefaultTableModel) tblUsuarios.getModel();
-    
-     
+    private void atualizarTabela(){
+        DefaultTableModel tabelaUSuarios = (DefaultTableModel) tblUsuarios.getModel(); 
         tabelaUSuarios.setRowCount(0);
 
         for (Usuario u : banco.getUsuarios()){
@@ -259,11 +340,31 @@ private void atualizarTabela(){
             });
         }
 
-       
         tabelaUSuarios.fireTableDataChanged();
     }
     
+    private void limparCampos() {
+        cbxCargo.setSelectedIndex(0);
+        txtNome.setText("Nome");
+        pswSenha.setText("Senha");
+        
+        cbxCargo.setEnabled(false);
+        txtNome.setEnabled(false);
+        pswSenha.setEnabled(false);
+    }
     
-
-
+    private void preencherCampos(int id) {
+        for (Usuario u : banco.getUsuarios()){
+            if(u.getId() == id){
+                cbxCargo.setSelectedItem(u.getPerfil() == TipoUsuario.ADMINISTRADOR ? "Administrador" : "Normal");
+                txtNome.setText(u.getUsername());
+                pswSenha.setText(u.getSenha());
+                break;
+            }
+        }  
+        
+        cbxCargo.setEnabled(true);
+        txtNome.setEnabled(true);
+        pswSenha.setEnabled(true);
+    }
 }

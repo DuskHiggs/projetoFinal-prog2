@@ -38,16 +38,16 @@ public class Cadastro extends javax.swing.JFrame {
 
         jPanel9 = new javax.swing.JPanel();
         txtNomeCad = new javax.swing.JTextField();
-        labNome = new javax.swing.JLabel();
-        labSenha = new javax.swing.JLabel();
-        btnCad = new javax.swing.JButton();
+        lblNome = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
+        btnCadastrar = new javax.swing.JButton();
         pswSenha = new javax.swing.JPasswordField();
-        pswSenha1 = new javax.swing.JPasswordField();
-        labSenha1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pswConfirmaSenha = new javax.swing.JPasswordField();
+        lblConfirmaSenha = new javax.swing.JLabel();
+        pnlRight = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        labAviso = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblAviso = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,58 +55,58 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel9.add(txtNomeCad, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 115, 240, -1));
 
-        labNome.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        labNome.setText("Nome:");
-        jPanel9.add(labNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 118, -1, -1));
+        lblNome.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblNome.setText("Nome:");
+        jPanel9.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 118, -1, -1));
 
-        labSenha.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        labSenha.setText("Senha:");
-        jPanel9.add(labSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 149, -1, -1));
+        lblSenha.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblSenha.setText("Senha:");
+        jPanel9.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 149, -1, -1));
 
-        btnCad.setBackground(new java.awt.Color(102, 10, 23));
-        btnCad.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnCad.setForeground(new java.awt.Color(255, 255, 255));
-        btnCad.setText("Cadastrar");
-        btnCad.addActionListener(this::btnCadActionPerformed);
-        jPanel9.add(btnCad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+        btnCadastrar.setBackground(new java.awt.Color(102, 10, 23));
+        btnCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(this::btnCadastrarActionPerformed);
+        jPanel9.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
         jPanel9.add(pswSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 146, 240, -1));
 
-        pswSenha1.addActionListener(this::pswSenha1ActionPerformed);
-        jPanel9.add(pswSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 177, 240, -1));
+        pswConfirmaSenha.addActionListener(this::pswConfirmaSenhaActionPerformed);
+        jPanel9.add(pswConfirmaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 177, 240, -1));
 
-        labSenha1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        labSenha1.setText("Confirmar Senha:");
-        jPanel9.add(labSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 180, -1, -1));
+        lblConfirmaSenha.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblConfirmaSenha.setText("Confirmar Senha:");
+        jPanel9.add(lblConfirmaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 180, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(102, 10, 23));
+        pnlRight.setBackground(new java.awt.Color(102, 10, 23));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/man,guy,person,stool,bar,laptop,computer,earbuds,furniture.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlRightLayout = new javax.swing.GroupLayout(pnlRight);
+        pnlRight.setLayout(pnlRightLayout);
+        pnlRightLayout.setHorizontalGroup(
+            pnlRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlRightLayout.setVerticalGroup(
+            pnlRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRightLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel9.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 290));
+        jPanel9.add(pnlRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 290));
 
-        labAviso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labAviso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel9.add(labAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 380, 37));
+        lblAviso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAviso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel9.add(lblAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 380, 37));
 
-        jLabel3.setFont(new java.awt.Font("Bodoni MT Condensed", 1, 36)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Fazer cadastro");
-        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 380, -1));
+        lblTitulo.setFont(new java.awt.Font("Bodoni MT Condensed", 1, 36)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Fazer cadastro");
+        jPanel9.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 380, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +122,7 @@ public class Cadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
       
         if(validarCampos()){
             banco.getUsuarios().add(retornaCadastro());
@@ -131,11 +131,11 @@ public class Cadastro extends javax.swing.JFrame {
             new Login().setVisible(true);
         }
 
-    }//GEN-LAST:event_btnCadActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void pswSenha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswSenha1ActionPerformed
+    private void pswConfirmaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswConfirmaSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pswSenha1ActionPerformed
+    }//GEN-LAST:event_pswConfirmaSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,17 +163,17 @@ public class Cadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCad;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel labAviso;
-    private javax.swing.JLabel labNome;
-    private javax.swing.JLabel labSenha;
-    private javax.swing.JLabel labSenha1;
+    private javax.swing.JLabel lblAviso;
+    private javax.swing.JLabel lblConfirmaSenha;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlRight;
+    private javax.swing.JPasswordField pswConfirmaSenha;
     private javax.swing.JPasswordField pswSenha;
-    private javax.swing.JPasswordField pswSenha1;
     private javax.swing.JTextField txtNomeCad;
     // End of variables declaration//GEN-END:variables
     
@@ -181,18 +181,18 @@ public class Cadastro extends javax.swing.JFrame {
         String username, senha, confirmarSenha;
         username =txtNomeCad.getText();
         senha = new String(pswSenha.getPassword());
-        confirmarSenha = new String(pswSenha1.getPassword());
+        confirmarSenha = new String(pswConfirmaSenha.getPassword());
         
         if(username.equals("") || senha.equals("") || confirmarSenha.equals("")){
-            labAviso.setText("Preencha todos os campos");
+            lblAviso.setText("Preencha todos os campos");
             return false;
             
         }else if(senha.equals(confirmarSenha)){
-            labAviso.setText("Usuario cadastrado");
+            lblAviso.setText("Usuario cadastrado");
            
             return true;
         }else{
-            labAviso.setText("Senhas não coincidem");
+            lblAviso.setText("Senhas não coincidem");
             return false;
         }
         
@@ -201,7 +201,7 @@ public class Cadastro extends javax.swing.JFrame {
     private void limparCampos(){
         txtNomeCad.setText("");
         pswSenha.setText("");
-        pswSenha1.setText("");
+        pswConfirmaSenha.setText("");
         
     }
     
