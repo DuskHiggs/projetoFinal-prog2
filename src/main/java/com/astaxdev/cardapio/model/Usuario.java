@@ -4,23 +4,22 @@
  */
 package com.astaxdev.cardapio.model;
 
-
 public class Usuario {
     private String username;
     private String senha;
+    private TipoUsuario cargo;
     private static int contador = 1; 
     private int id;
 
-    public String getPerfil() {
-        return perfil;
+    public TipoUsuario getPerfil() {
+        return cargo;
     }
-    private String perfil = "Vizualização";
-
     
-    public Usuario(String username, String senha) {
+    public Usuario(String username, String senha, TipoUsuario cargo) {
         this.id = contador++;
         this.username = username;
         this.senha = senha;
+        this.cargo = cargo;
     }
 
     public int getId() {

@@ -5,6 +5,7 @@
 package com.astaxdev.cardapio.view;
 
 import com.astaxdev.cardapio.model.Usuario;
+import com.astaxdev.cardapio.util.BancoDeDados;
 
 /**
  *
@@ -13,7 +14,7 @@ import com.astaxdev.cardapio.model.Usuario;
 public class Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-    
+    private BancoDeDados banco = BancoDeDados.getInstance();
     
     /**
      * Creates new form Login
@@ -175,7 +176,8 @@ public class Login extends javax.swing.JFrame {
     private void btnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogActionPerformed
        
         if(validarUser()){
-            new Main().setVisible(true);
+            banco.setSessao(getUser());
+            new Principal().setVisible(true);
             this.dispose();
         }else{
             labAviso.setText("Usuário inválido");
@@ -184,8 +186,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogActionPerformed
 
     private void labFazercadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labFazercadastroMouseClicked
+        this.dispose();
         new Cadastro().setVisible(true);
-
     }//GEN-LAST:event_labFazercadastroMouseClicked
 
     private void txtNomeLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeLogActionPerformed
@@ -236,13 +238,26 @@ public class Login extends javax.swing.JFrame {
         nome = txtNomeLog.getText();
         senha = new String (pswSenha.getPassword());
         
-        for(Usuario u : Cadastro.getLista()){
+        for(Usuario u : banco.getUsuarios()){
             if(u.getUsername().equals(nome) && u.getSenha().equals(senha)){
                 return true;
             }
         }
+        
         return false;
     }
 
-
+    private Usuario getUser() {
+        String nome, senha;
+        nome = txtNomeLog.getText();
+        senha = new String (pswSenha.getPassword());
+        
+        for(Usuario u : banco.getUsuarios()){
+            if(u.getUsername().equals(nome) && u.getSenha().equals(senha)){
+                return u;
+            }
+        }
+        
+        return null;
+    }
 }

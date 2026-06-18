@@ -4,7 +4,7 @@
 
 package com.astaxdev.cardapio;
 import com.astaxdev.cardapio.view.Login;
-import com.astaxdev.cardapio.view.Main;
+import com.astaxdev.cardapio.view.Principal;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 /**

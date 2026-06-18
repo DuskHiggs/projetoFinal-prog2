@@ -4,7 +4,9 @@
  */
 package com.astaxdev.cardapio.view.gerenciamento;
 
+import com.astaxdev.cardapio.model.TipoUsuario;
 import com.astaxdev.cardapio.model.Usuario;
+import com.astaxdev.cardapio.util.BancoDeDados;
 import com.astaxdev.cardapio.view.Cadastro;
 import java.util.List;
 import java.util.Scanner;
@@ -12,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author astaxgg
+ * @author astaxggA
  */
 public class TelaPerfil extends javax.swing.JPanel {
     private int posicaoTabela = -1;                    
     private int id = 0;
-    public static Cadastro lista = new Cadastro();
+    private BancoDeDados banco = BancoDeDados.getInstance();
     
     public TelaPerfil() {
         initComponents();
@@ -166,8 +168,8 @@ public class TelaPerfil extends javax.swing.JPanel {
                     .addComponent(btnDeletar)
                     .addComponent(btnAlterarSenha))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -186,7 +188,7 @@ public class TelaPerfil extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -204,9 +206,9 @@ public class TelaPerfil extends javax.swing.JPanel {
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         
         
-        for (Usuario u : Cadastro.getLista()){
+        for (Usuario u : banco.getUsuarios()){
             if(u.getId() == id){
-                Cadastro.getLista().remove(u);
+                banco.getUsuarios().remove(u);
                 break;
             }
         }    
@@ -219,7 +221,7 @@ public class TelaPerfil extends javax.swing.JPanel {
       System.out.println("Digite a senha: ");
       Scanner sc = new Scanner(System.in);
       String senha = sc.nextLine();
-         for (Usuario u : Cadastro.getLista()){
+         for (Usuario u : banco.getUsuarios()){
             if(u.getId() == id){
                 u.setSenha(senha);
                 break;
@@ -249,11 +251,11 @@ private void atualizarTabela(){
      
         tabelaUSuarios.setRowCount(0);
 
-        for (Usuario u : Cadastro.getLista()){
+        for (Usuario u : banco.getUsuarios()){
             tabelaUSuarios.addRow(new Object[]{
                 u.getId(),          
                 u.getUsername(),    
-                u.getPerfil()    
+                u.getPerfil() == TipoUsuario.ADMINISTRADOR ? "Admin" : "Normal"     
             });
         }
 

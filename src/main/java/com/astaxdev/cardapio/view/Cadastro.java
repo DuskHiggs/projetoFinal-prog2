@@ -4,7 +4,9 @@
  */
 package com.astaxdev.cardapio.view;
 
+import com.astaxdev.cardapio.model.TipoUsuario;
 import com.astaxdev.cardapio.model.Usuario;
+import com.astaxdev.cardapio.util.BancoDeDados;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,7 @@ import java.util.List;
 public class Cadastro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cadastro.class.getName());
-    public static List<Usuario> listaUsuario = new ArrayList<>();
-    
+    private BancoDeDados banco = BancoDeDados.getInstance();
     /**
      * Creates new form Cadastro
      */
@@ -124,8 +125,10 @@ public class Cadastro extends javax.swing.JFrame {
     private void btnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadActionPerformed
       
         if(validarCampos()){
-            listaUsuario.add(retornaCadastro());
+            banco.getUsuarios().add(retornaCadastro());
             limparCampos();
+            this.dispose();
+            new Login().setVisible(true);
         }
 
     }//GEN-LAST:event_btnCadActionPerformed
@@ -208,11 +211,7 @@ public class Cadastro extends javax.swing.JFrame {
         senha = new String(pswSenha.getPassword());    
         
         
-        return new Usuario(username, senha);
+        return new Usuario(username, senha, TipoUsuario.PADRAO);
         
-    }
-    
-    public static List<Usuario> getLista(){
-        return listaUsuario;
     }
 }

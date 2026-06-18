@@ -4,6 +4,8 @@
  */
 package com.astaxdev.cardapio.view;
 
+import com.astaxdev.cardapio.model.TipoUsuario;
+import com.astaxdev.cardapio.util.BancoDeDados;
 import com.astaxdev.cardapio.view.cardapio.TelaCardapio;
 import com.astaxdev.cardapio.view.gerenciamento.TelaGerenciamento;
 import com.astaxdev.cardapio.view.gerenciamento.TelaPerfil;
@@ -15,14 +17,15 @@ import java.awt.CardLayout;
  * @author astaxgg
  */
 
-public class Main extends javax.swing.JFrame {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
+public class Principal extends javax.swing.JFrame {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
+    private BancoDeDados banco = BancoDeDados.getInstance();
     private CardLayout card;
 
     /**
      * Creates new form MainView
      */
-    public Main() {
+    public Principal() {
         initComponents();
         
         setLocationRelativeTo(this);
@@ -34,6 +37,11 @@ public class Main extends javax.swing.JFrame {
         pnlRightSide.add(new TelaGerenciamento(), "Gerenciamento");
         pnlRightSide.add(new TelaPerfil(), "Perfil");
         card.show(pnlRightSide, "Principal");
+        
+        if (banco.getSessao().getPerfil() == TipoUsuario.PADRAO) {
+            btnGerenciamento.setVisible(false);
+            btnPerfil.setVisible(false);
+        }
     }
 
     /**
@@ -51,8 +59,7 @@ public class Main extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        labSair = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblSair = new javax.swing.JLabel();
         pnlContent = new javax.swing.JSplitPane();
         pnlLeftSide = new javax.swing.JPanel();
         btnCardapio = new javax.swing.JButton();
@@ -65,21 +72,21 @@ public class Main extends javax.swing.JFrame {
         pnlHeader.setBackground(new java.awt.Color(123, 16, 32));
 
         lblTitulo.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(220, 220, 220));
         lblTitulo.setText("Sistema de Cardapio");
 
         lblSubtitulo.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(220, 220, 220));
         lblSubtitulo.setText("Gerencie seu cardapio");
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurante-48.png"))); // NOI18N
 
-        labSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-logout-24.png"))); // NOI18N
-        labSair.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-logout-24.png"))); // NOI18N
+        lblSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labSairMouseClicked(evt);
+                lblSairMouseClicked(evt);
             }
         });
-
-        jLabel2.setText("Sair");
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
@@ -93,26 +100,19 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(lblSubtitulo)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labSair, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(31, 31, 31))
+                .addComponent(lblSair)
+                .addGap(29, 29, 29))
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlHeaderLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(labSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSair)
                     .addComponent(lblLogo)
                     .addComponent(lblSubtitulo))
                 .addGap(25, 25, 25))
@@ -126,6 +126,7 @@ public class Main extends javax.swing.JFrame {
 
         btnCardapio.setBackground(new java.awt.Color(102, 10, 23));
         btnCardapio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnCardapio.setForeground(new java.awt.Color(220, 220, 220));
         btnCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hamburguer-24.png"))); // NOI18N
         btnCardapio.setText("Ver Cardapio");
         btnCardapio.setBorderPainted(false);
@@ -136,6 +137,7 @@ public class Main extends javax.swing.JFrame {
 
         btnGerenciamento.setBackground(new java.awt.Color(102, 10, 23));
         btnGerenciamento.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnGerenciamento.setForeground(new java.awt.Color(220, 220, 220));
         btnGerenciamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/engrenagem-24.png"))); // NOI18N
         btnGerenciamento.setText("Gerenciamento");
         btnGerenciamento.setBorderPainted(false);
@@ -144,6 +146,7 @@ public class Main extends javax.swing.JFrame {
 
         btnPerfil.setBackground(new java.awt.Color(102, 10, 23));
         btnPerfil.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnPerfil.setForeground(new java.awt.Color(220, 220, 220));
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-people-24.png"))); // NOI18N
         btnPerfil.setText("Usuarios");
         btnPerfil.setBorderPainted(false);
@@ -169,9 +172,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGerenciamento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                 .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnlContent.setLeftComponent(pnlLeftSide);
@@ -182,7 +185,7 @@ public class Main extends javax.swing.JFrame {
         pnlRightSide.setLayout(pnlRightSideLayout);
         pnlRightSideLayout.setHorizontalGroup(
             pnlRightSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         pnlRightSideLayout.setVerticalGroup(
             pnlRightSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,11 +198,8 @@ public class Main extends javax.swing.JFrame {
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlHeader, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlContent, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContent)
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,11 +231,11 @@ public class Main extends javax.swing.JFrame {
         card.show(pnlRightSide, "Gerenciamento");
     }//GEN-LAST:event_btnGerenciamentoActionPerformed
 
-    private void labSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labSairMouseClicked
+    private void lblSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSairMouseClicked
         this.dispose();
         new Login().setVisible(true);
 
-    }//GEN-LAST:event_labSairMouseClicked
+    }//GEN-LAST:event_lblSairMouseClicked
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         card.show(pnlRightSide,"Perfil");
@@ -263,7 +263,7 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Principal().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,10 +271,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnCardapio;
     private javax.swing.JButton btnGerenciamento;
     private javax.swing.JButton btnPerfil;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JLabel labSair;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSair;
     private javax.swing.JLabel lblSubtitulo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JSplitPane pnlContent;
