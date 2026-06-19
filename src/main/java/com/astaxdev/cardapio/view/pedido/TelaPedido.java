@@ -11,6 +11,7 @@ import com.astaxdev.cardapio.model.Usuario;
 import com.astaxdev.cardapio.util.BancoDeDados;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,9 @@ public class TelaPedido extends javax.swing.JFrame {
     private Item combo;
     private List<String> ingredientes;
     
+
+    
+    
     /**
      * Creates new form TelaPedido
      */
@@ -30,7 +34,6 @@ public class TelaPedido extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(this);
-        
         lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", "Customizado"));
     }
     
@@ -57,8 +60,8 @@ public class TelaPedido extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         pnlIngredientes = new javax.swing.JPanel();
         lblTituloIngrediente = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        chkHamburguer = new javax.swing.JCheckBox();
+        chkBatata = new javax.swing.JCheckBox();
         pnlHeader = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
@@ -83,11 +86,9 @@ public class TelaPedido extends javax.swing.JFrame {
         lblTituloIngrediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ingredientes-22.png"))); // NOI18N
         lblTituloIngrediente.setText("Ingredientes");
 
-        jRadioButton1.setForeground(new java.awt.Color(30, 30, 30));
-        jRadioButton1.setText("jRadioButton1");
+        chkHamburguer.setText("Hamburguer");
 
-        jRadioButton2.setForeground(new java.awt.Color(30, 30, 30));
-        jRadioButton2.setText("jRadioButton1");
+        chkBatata.setText("Batata");
 
         javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
         pnlIngredientes.setLayout(pnlIngredientesLayout);
@@ -97,23 +98,20 @@ public class TelaPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTituloIngrediente)
-                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1))))
-                .addContainerGap(391, Short.MAX_VALUE))
+                    .addComponent(chkHamburguer)
+                    .addComponent(chkBatata))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlIngredientesLayout.setVerticalGroup(
             pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIngredientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloIngrediente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkHamburguer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(chkBatata)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pnlHeader.setBackground(new java.awt.Color(123, 16, 32));
@@ -260,8 +258,7 @@ public class TelaPedido extends javax.swing.JFrame {
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
         Pedido pedido;
-        this.dispose();
-        
+        retornaPedido();
         if (this.combo != null) {
             pedido = new Pedido("Desc", "12B", this.combo, banco.getSessao());
         } else {
@@ -305,9 +302,9 @@ public class TelaPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPedido;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chkBatata;
+    private javax.swing.JCheckBox chkHamburguer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblLogo;
@@ -321,4 +318,22 @@ public class TelaPedido extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlIngredientes;
     // End of variables declaration//GEN-END:variables
+    private void retornaPedido(){
+   
+    String mesa = javax.swing.JOptionPane.showInputDialog(this, "Digite o número da mesa:");        
+    String prato = "", infoExtras;
+        
+    
+        if(chkHamburguer.isSelected()){
+            prato = prato +" Hamburguer\n ";
+        }
+        if(chkBatata.isSelected()){
+            prato = prato +" Batata \n";
+        }
+        
+        
+        Pedido pedido = new Pedido(prato, mesa, this.combo, banco.getSessao());
+        banco.getPedidos().add(pedido);
+    }
+
 }

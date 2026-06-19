@@ -4,20 +4,31 @@
  */
 package com.astaxdev.cardapio.view.gerenciamento;
 
+import com.astaxdev.cardapio.model.Item;
+import com.astaxdev.cardapio.model.Pedido;
+import com.astaxdev.cardapio.model.TipoUsuario;
+import com.astaxdev.cardapio.model.Usuario;
 import com.astaxdev.cardapio.util.BancoDeDados;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author astaxgg
  */
 public class TelaGerenciamento extends javax.swing.JPanel {
+
     private BancoDeDados banco = BancoDeDados.getInstance();
-    
-    /**
-     * Creates new form TelaGerenciamento
-     */
+    private int posicaoTabela = -1;
+    private int id = 0;
+    private Item combo;
+
     public TelaGerenciamento() {
         initComponents();
+        btnCancelar.setEnabled(false);
+        btnEnviar.setEnabled(false);
+        atualizarTabela();
+
     }
 
     /**
@@ -35,50 +46,38 @@ public class TelaGerenciamento extends javax.swing.JPanel {
         lblImagem = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPedidos = new javax.swing.JTable();
+        btnEnviar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblTitulo1 = new javax.swing.JLabel();
+        lblSubtitulo1 = new javax.swing.JLabel();
+        lblImagem1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(220, 220, 220));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
         pnlHeader.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(15, 15, 15));
-        lblTitulo.setText("Gerenciamento do cardapio");
+        lblTitulo.setText("Gerenciamento de pedidos");
+        pnlHeader.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 7, -1, 27));
 
         lblSubtitulo.setForeground(new java.awt.Color(15, 15, 15));
-        lblSubtitulo.setText("Gerencie o cardapio");
+        lblSubtitulo.setText("Gerencie os pedidos recebidos");
+        pnlHeader.add(lblSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 299, 20));
 
         lblImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/engrenagem-24.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(lblImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo)
-                    .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(197, Short.MAX_VALUE))
-        );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSubtitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pnlHeader.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 41, 61));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,27 +85,68 @@ public class TelaGerenciamento extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "Mesa", "Pratos", "Info Extras"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPedidosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblPedidos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 590, 270));
+
+        btnEnviar.setBackground(new java.awt.Color(0, 153, 153));
+        btnEnviar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEnviar.setText("Enviar Pedido");
+        btnEnviar.setBorderPainted(false);
+        btnEnviar.setFocusPainted(false);
+        btnEnviar.addActionListener(this::btnEnviarActionPerformed);
+        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
+
+        btnCancelar.setBackground(new java.awt.Color(144, 38, 53));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar Pedido");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+
+        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(15, 15, 15));
+        lblTitulo1.setText("Resumo dos pedidos");
+        jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 32));
+
+        lblSubtitulo1.setForeground(new java.awt.Color(15, 15, 15));
+        lblSubtitulo1.setText("Pedidos em andamento");
+        jPanel1.add(lblSubtitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 139, -1));
+
+        lblImagem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/engrenagem-24.png"))); // NOI18N
+        jPanel1.add(lblImagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 41, 51));
+
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\projetoFinal-prog2-certo\\src\\main\\resources\\atualizar.png")); // NOI18N
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,7 +155,7 @@ public class TelaGerenciamento extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
                     .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -125,19 +165,98 @@ public class TelaGerenciamento extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja enviar este pedido?",
+                "Confirmar envio",
+                JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            for (Pedido p : banco.getPedidos()) {
+                if (p.getId() == id) {
+
+                    banco.getPedidos().remove(p);
+                    break;
+                }
+            }
+        }
+
+        id = 0;
+        posicaoTabela = -1;
+        atualizarTabela();
+        btnCancelar.setEnabled(false);
+        btnEnviar.setEnabled(false);
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja cancelar este pedido?",
+                "Confirmar Cancelamento",
+                JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            for (Pedido p : banco.getPedidos()) {
+                if (p.getId() == id) {
+
+                    banco.getPedidos().remove(p);
+                    break;
+                }
+            }
+        }
+
+        
+
+        id = 0;
+        posicaoTabela = -1;
+        atualizarTabela();
+        btnCancelar.setEnabled(false);
+        btnEnviar.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void tblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPedidosMouseClicked
+        posicaoTabela = tblPedidos.getSelectedRow();
+        btnCancelar.setEnabled(true);
+        btnEnviar.setEnabled(true);
+        id = (int) tblPedidos.getValueAt(posicaoTabela, 0);
+    }//GEN-LAST:event_tblPedidosMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        atualizarTabela();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEnviar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblImagem;
+    private javax.swing.JLabel lblImagem1;
     private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblSubtitulo1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JPanel pnlHeader;
+    private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizarTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tblPedidos.getModel();
+        modelo.setRowCount(0); // Limpa tudo antes de listar
+
+        for (Pedido p : banco.getPedidos()) {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getMesa(),
+                p.getDescricao(),
+                p.getCombo() != null ? p.getCombo().getNome() : "Sem combo"
+            });
+        }
+    }
 }

@@ -235,6 +235,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnGerenciamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciamentoActionPerformed
         card.show(pnlRightSide, "Gerenciamento");
+        
     }//GEN-LAST:event_btnGerenciamentoActionPerformed
 
     private void lblSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSairMouseClicked
