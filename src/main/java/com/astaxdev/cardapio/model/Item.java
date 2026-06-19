@@ -5,6 +5,7 @@
 package com.astaxdev.cardapio.model;
 
 import java.net.URL;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,14 +19,10 @@ public class Item {
     private String nome;
     private String descricao;
     private double preco;
+    private List<String> ingredientes;
     private Categoria tipo;
     
-    public Item() {
-        this.contador++;
-        this.id = this.contador;
-    }
-    
-    public Item(String nome, String desc, double preco, Categoria tipo) {
+    public Item(String nome, String desc, double preco, List<String> ingredientes, Categoria tipo) {
         this.contador++;
         
         this.id = this.contador;
@@ -33,6 +30,7 @@ public class Item {
         this.descricao = desc;
         this.preco = preco;
         this.tipo = tipo;
+        this.ingredientes = ingredientes;
     }
     
     private ImageIcon criarIconeCaminho(String caminho) {
@@ -43,6 +41,10 @@ public class Item {
         }
 
         return new ImageIcon();
+    }
+    
+    public List<String> getIngredientes() {
+        return this.ingredientes;
     }
     
     public String getNome() {

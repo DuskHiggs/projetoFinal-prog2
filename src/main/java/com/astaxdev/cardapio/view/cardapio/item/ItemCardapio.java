@@ -4,6 +4,8 @@
  */
 package com.astaxdev.cardapio.view.cardapio.item;
 
+import com.astaxdev.cardapio.model.Item;
+import com.astaxdev.cardapio.view.pedido.TelaPedido;
 import javax.swing.ImageIcon;
 
 /**
@@ -11,12 +13,13 @@ import javax.swing.ImageIcon;
  * @author astaxgg
  */
 public class ItemCardapio extends javax.swing.JPanel {
-
+    private Item pedido;
     /**
      * Creates new form ItemCardapio
      */
-    public ItemCardapio() {
+    public ItemCardapio(Item pedido) {
         initComponents();
+        this.pedido = pedido;
     }
 
     /**
@@ -37,6 +40,11 @@ public class ItemCardapio extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(220, 220, 220)));
         setMaximumSize(new java.awt.Dimension(570, 106));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         lblNome.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblNome.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,6 +119,10 @@ public class ItemCardapio extends javax.swing.JPanel {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        new TelaPedido(this.pedido).setVisible(true);
+    }//GEN-LAST:event_formMouseClicked
 
     public void setNome(String nome) {
         lblNome.setText(nome);

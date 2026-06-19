@@ -4,7 +4,13 @@
  */
 package com.astaxdev.cardapio.view.pedido;
 
+import com.astaxdev.cardapio.model.Categoria;
+import com.astaxdev.cardapio.model.Item;
+import com.astaxdev.cardapio.model.Pedido;
 import com.astaxdev.cardapio.model.Usuario;
+import com.astaxdev.cardapio.util.BancoDeDados;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +19,10 @@ import com.astaxdev.cardapio.model.Usuario;
 public class TelaPedido extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPedido.class.getName());
-
+    private BancoDeDados banco = BancoDeDados.getInstance();
+    private Item combo;
+    private List<String> ingredientes;
+    
     /**
      * Creates new form TelaPedido
      */
@@ -21,15 +30,19 @@ public class TelaPedido extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(this);
+        
+        lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", "Customizado"));
     }
     
-    public TelaPedido(String tipoPedido, Usuario cliente) {
+    public TelaPedido(Item combo) {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(this);
         
-        lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", tipoPedido));
+        this.combo = combo;
+        lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", combo.getNome()));
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +58,7 @@ public class TelaPedido extends javax.swing.JFrame {
         pnlIngredientes = new javax.swing.JPanel();
         lblTituloIngrediente = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         pnlHeader = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
@@ -72,6 +86,9 @@ public class TelaPedido extends javax.swing.JFrame {
         jRadioButton1.setForeground(new java.awt.Color(30, 30, 30));
         jRadioButton1.setText("jRadioButton1");
 
+        jRadioButton2.setForeground(new java.awt.Color(30, 30, 30));
+        jRadioButton2.setText("jRadioButton1");
+
         javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
         pnlIngredientes.setLayout(pnlIngredientesLayout);
         pnlIngredientesLayout.setHorizontalGroup(
@@ -79,11 +96,13 @@ public class TelaPedido extends javax.swing.JFrame {
             .addGroup(pnlIngredientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTituloIngrediente)
                     .addGroup(pnlIngredientesLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jRadioButton1))
-                    .addComponent(lblTituloIngrediente))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jRadioButton1))))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
         pnlIngredientesLayout.setVerticalGroup(
             pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +111,9 @@ public class TelaPedido extends javax.swing.JFrame {
                 .addComponent(lblTituloIngrediente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton2)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pnlHeader.setBackground(new java.awt.Color(123, 16, 32));
@@ -184,6 +205,7 @@ public class TelaPedido extends javax.swing.JFrame {
         btnPedido.setText("Finalizar Pedido");
         btnPedido.setBorderPainted(false);
         btnPedido.setFocusPainted(false);
+        btnPedido.addActionListener(this::btnPedidoActionPerformed);
 
         lblPreco.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblPreco.setForeground(new java.awt.Color(123, 16, 32));
@@ -236,6 +258,25 @@ public class TelaPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
+        Pedido pedido;
+        this.dispose();
+        
+        if (this.combo != null) {
+            pedido = new Pedido("Desc", "12B", this.combo, banco.getSessao());
+        } else {
+            Item combo = new Item("Customizado", "Vs", 12.00, new ArrayList<String>() {{
+                add("Frango a Passarinho 500g");
+                add("Batata Frita 500g");
+                add("Calabresa Acebolada 500g");
+            }}, Categoria.PORCAO);
+            
+            pedido = new Pedido("Desc", "12B", combo, banco.getSessao());
+        }
+        
+        new TelaRecibo(pedido).setVisible(true);
+    }//GEN-LAST:event_btnPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +307,7 @@ public class TelaPedido extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblLogo;

@@ -144,8 +144,8 @@ public class Principal extends javax.swing.JFrame {
         btnGerenciamento.setBackground(new java.awt.Color(102, 10, 23));
         btnGerenciamento.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnGerenciamento.setForeground(new java.awt.Color(220, 220, 220));
-        btnGerenciamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/engrenagem-24.png"))); // NOI18N
-        btnGerenciamento.setText("Gerenciamento");
+        btnGerenciamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalizar-pedido-24.png"))); // NOI18N
+        btnGerenciamento.setText("Ver Pedidos");
         btnGerenciamento.setBorderPainted(false);
         btnGerenciamento.setFocusPainted(false);
         btnGerenciamento.addActionListener(this::btnGerenciamentoActionPerformed);

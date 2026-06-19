@@ -33,7 +33,7 @@ public class TelaCardapio extends javax.swing.JPanel {
         pnlRaiz.removeAll();
         
         for (Item i : banco.getItens()) {
-            ItemCardapio novo = new ItemCardapio();
+            ItemCardapio novo = new ItemCardapio(i);
             String nome = i.getNome();
             
             if (nome.toLowerCase().contains(filtro.toLowerCase())) { // melhorar, isso não pega acento | pao ~= pão
@@ -162,7 +162,7 @@ public class TelaCardapio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPesquisarFocusLost
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
-        new TelaPedido("Customizado", banco.getSessao()).setVisible(true);
+        new TelaPedido().setVisible(true);
     }//GEN-LAST:event_btnPedidoActionPerformed
 
 

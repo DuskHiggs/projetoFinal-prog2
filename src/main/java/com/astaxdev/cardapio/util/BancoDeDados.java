@@ -6,6 +6,7 @@ package com.astaxdev.cardapio.util;
 
 import com.astaxdev.cardapio.model.Categoria;
 import com.astaxdev.cardapio.model.Item;
+import com.astaxdev.cardapio.model.Pedido;
 import com.astaxdev.cardapio.model.TipoUsuario;
 import com.astaxdev.cardapio.model.Usuario;
 import java.util.ArrayList;
@@ -19,16 +20,35 @@ public class BancoDeDados {
     private static final BancoDeDados INSTANCE = new BancoDeDados();
     private final List<Usuario> usuarios = new ArrayList<>();
     private final List<Item> itens = new ArrayList<>();
+    private final List<Pedido> pedidos = new ArrayList<>();
     private Usuario sessao;
     
     private BancoDeDados() {
         usuarios.add(new Usuario("Alexis", "123", TipoUsuario.ADMINISTRADOR));
         usuarios.add(new Usuario("a", "a", TipoUsuario.ADMINISTRADOR));
         
-        itens.add(new Item("Hambúrguer Artesanal", "Pão brioche.", 35.50, Categoria.LANCHE));
-        itens.add(new Item("Batata Frita Especial", "Batata rústica.", 22.00, Categoria.PORCAO));
-        itens.add(new Item("Soda Italiana", "Sabor maçã verde.", 12.00, Categoria.BEBIDA));
-        itens.add(new Item("Pudim de Leite", "Receita tradicional.", 15.00, Categoria.SOBREMESA));
+        itens.add(new Item("Combo Artesanal", "Combo familia", 35.50, new ArrayList<String>() {{
+            add("Hamburgueres Artesanais");
+            add("Porção Batata 500g");
+            add("Coca 2l");
+        }}, Categoria.LANCHE));
+        
+        itens.add(new Item("Batata Frita Especial", "Especial com Coca", 22.00, new ArrayList<String>() {{
+            add("Batata Frita Especial 500g");
+            add("Coca 600ml");
+        }}, Categoria.PORCAO));
+        
+        itens.add(new Item("Porção Mista", "Varias Porções", 12.00, new ArrayList<String>() {{
+            add("Frango a Passarinho 500g");
+            add("Batata Frita 500g");
+            add("Calabresa Acebolada 500g");
+        }}, Categoria.PORCAO));
+        
+        itens.add(new Item("Petit Gateau", "Saboroso", 15.00, new ArrayList<String>() {{
+            add("Bolo de Chocolate");
+            add("Bola de Sorvete");
+            add("Chantilly");
+        }}, Categoria.SOBREMESA));
     }
 
     public static BancoDeDados getInstance() {
@@ -43,6 +63,9 @@ public class BancoDeDados {
         return itens;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
     
     public void setSessao(Usuario sessao) {
         this.sessao = sessao;

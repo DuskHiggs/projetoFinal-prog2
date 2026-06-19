@@ -4,6 +4,9 @@
  */
 package com.astaxdev.cardapio.view.pedido;
 
+import com.astaxdev.cardapio.model.Pedido;
+import com.astaxdev.cardapio.util.BancoDeDados;
+
 /**
  *
  * @author astaxgg
@@ -11,12 +14,32 @@ package com.astaxdev.cardapio.view.pedido;
 public class TelaRecibo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaRecibo.class.getName());
-
+    private BancoDeDados banco = BancoDeDados.getInstance();
+    private Pedido pedido;
     /**
      * Creates new form TelaRecibo
+     * 
+     * 
      */
+    
     public TelaRecibo() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(this);
+    }
+        
+    public TelaRecibo(Pedido pedido) {
+        initComponents();
+        setResizable(false);
+        setLocationRelativeTo(this);
+        
+        this.pedido = pedido;
+        lblTitulo.setText(lblTitulo.getText().replace("{0}", String.valueOf(pedido.getId())));
+        banco.getPedidos().add(pedido);
+    } 
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     /**
@@ -36,7 +59,7 @@ public class TelaRecibo extends javax.swing.JFrame {
         pnlIngredientes = new javax.swing.JPanel();
         lblTituloIngrediente = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnlFundo.setBackground(new java.awt.Color(220, 220, 220));
 

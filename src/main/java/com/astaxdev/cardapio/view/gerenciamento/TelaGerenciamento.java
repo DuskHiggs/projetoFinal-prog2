@@ -4,12 +4,15 @@
  */
 package com.astaxdev.cardapio.view.gerenciamento;
 
+import com.astaxdev.cardapio.util.BancoDeDados;
+
 /**
  *
  * @author astaxgg
  */
 public class TelaGerenciamento extends javax.swing.JPanel {
-
+    private BancoDeDados banco = BancoDeDados.getInstance();
+    
     /**
      * Creates new form TelaGerenciamento
      */
