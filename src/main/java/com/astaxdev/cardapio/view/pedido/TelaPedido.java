@@ -24,9 +24,6 @@ public class TelaPedido extends javax.swing.JFrame {
     private Item combo;
     private List<String> ingredientes;
     
-
-    
-    
     /**
      * Creates new form TelaPedido
      */
@@ -34,6 +31,9 @@ public class TelaPedido extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(this);
+        
+        habilitarCampos(true);
+        lblPreco.setText("R$" + String.format("%.2f", 100.00));
         lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", "Customizado"));
     }
     
@@ -43,7 +43,10 @@ public class TelaPedido extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         
         this.combo = combo;
-        lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", combo.getNome()));
+        habilitarCampos(false);
+        marcarIngredientes(combo.getIngredientes());
+        lblPreco.setText("R$" + String.format("%.2f", combo.getPreco()));
+        lblTitulo.setText(lblTitulo.getText().replace("{TipoPedido}", combo.getNome())); 
     }
 
 
@@ -60,17 +63,27 @@ public class TelaPedido extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         pnlIngredientes = new javax.swing.JPanel();
         lblTituloIngrediente = new javax.swing.JLabel();
-        chkHamburguer = new javax.swing.JCheckBox();
+        chkHbgArtesanal = new javax.swing.JCheckBox();
+        chkHbgAmericano = new javax.swing.JCheckBox();
+        chhCoca2l = new javax.swing.JCheckBox();
+        chkCoca600ml = new javax.swing.JCheckBox();
+        chkBatataEspecial = new javax.swing.JCheckBox();
         chkBatata = new javax.swing.JCheckBox();
+        chkCalabresaAcb = new javax.swing.JCheckBox();
+        chkFrangoPss = new javax.swing.JCheckBox();
+        chkBoloChoco = new javax.swing.JCheckBox();
+        chkSorvete = new javax.swing.JCheckBox();
+        chkChantilly = new javax.swing.JCheckBox();
+        chkPudim = new javax.swing.JCheckBox();
         pnlHeader = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         pnlEndereco = new javax.swing.JPanel();
         lblTituloIngrediente1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        lblDesc = new javax.swing.JLabel();
+        sclExtras = new javax.swing.JScrollPane();
+        txaExtras = new javax.swing.JTextArea();
         btnPedido = new javax.swing.JButton();
         lblPreco = new javax.swing.JLabel();
 
@@ -86,9 +99,41 @@ public class TelaPedido extends javax.swing.JFrame {
         lblTituloIngrediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ingredientes-22.png"))); // NOI18N
         lblTituloIngrediente.setText("Ingredientes");
 
-        chkHamburguer.setText("Hamburguer");
+        chkHbgArtesanal.setForeground(new java.awt.Color(30, 30, 30));
+        chkHbgArtesanal.setText("Hamburguer Artesanal");
 
-        chkBatata.setText("Batata");
+        chkHbgAmericano.setForeground(new java.awt.Color(30, 30, 30));
+        chkHbgAmericano.setText("Hamburguer Americano");
+
+        chhCoca2l.setForeground(new java.awt.Color(30, 30, 30));
+        chhCoca2l.setText("CocaCola 2l");
+
+        chkCoca600ml.setForeground(new java.awt.Color(30, 30, 30));
+        chkCoca600ml.setText("CocaCola 600ml");
+
+        chkBatataEspecial.setForeground(new java.awt.Color(30, 30, 30));
+        chkBatataEspecial.setText("Batata Frita Especial");
+
+        chkBatata.setForeground(new java.awt.Color(30, 30, 30));
+        chkBatata.setText("Batata Frita");
+
+        chkCalabresaAcb.setForeground(new java.awt.Color(30, 30, 30));
+        chkCalabresaAcb.setText("Calabresa Acebolada");
+
+        chkFrangoPss.setForeground(new java.awt.Color(30, 30, 30));
+        chkFrangoPss.setText("Frango a Passarinho");
+
+        chkBoloChoco.setForeground(new java.awt.Color(30, 30, 30));
+        chkBoloChoco.setText("Bolo de Chocolate");
+
+        chkSorvete.setForeground(new java.awt.Color(30, 30, 30));
+        chkSorvete.setText("Bola de Sorvete");
+
+        chkChantilly.setForeground(new java.awt.Color(30, 30, 30));
+        chkChantilly.setText("Chantilly");
+
+        chkPudim.setForeground(new java.awt.Color(30, 30, 30));
+        chkPudim.setText("Pudim");
 
         javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
         pnlIngredientes.setLayout(pnlIngredientesLayout);
@@ -97,10 +142,28 @@ public class TelaPedido extends javax.swing.JFrame {
             .addGroup(pnlIngredientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTituloIngrediente)
-                    .addComponent(chkHamburguer)
-                    .addComponent(chkBatata))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addComponent(lblTituloIngrediente)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkHbgArtesanal)
+                            .addComponent(chkHbgAmericano)
+                            .addComponent(chhCoca2l)
+                            .addComponent(chkCoca600ml))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkBatataEspecial)
+                            .addComponent(chkFrangoPss)
+                            .addComponent(chkCalabresaAcb)
+                            .addComponent(chkBatata))
+                        .addGap(57, 57, 57)
+                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkSorvete)
+                            .addComponent(chkBoloChoco)
+                            .addComponent(chkChantilly)
+                            .addComponent(chkPudim))
+                        .addGap(14, 14, 14))))
         );
         pnlIngredientesLayout.setVerticalGroup(
             pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,10 +171,26 @@ public class TelaPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTituloIngrediente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chkHamburguer)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkHbgArtesanal)
+                    .addComponent(chkBatataEspecial)
+                    .addComponent(chkBoloChoco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkBatata)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkHbgAmericano)
+                    .addComponent(chkBatata)
+                    .addComponent(chkSorvete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chhCoca2l)
+                    .addComponent(chkCalabresaAcb)
+                    .addComponent(chkChantilly))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkCoca600ml)
+                    .addComponent(chkFrangoPss)
+                    .addComponent(chkPudim))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pnlHeader.setBackground(new java.awt.Color(123, 16, 32));
@@ -160,13 +239,13 @@ public class TelaPedido extends javax.swing.JFrame {
         lblTituloIngrediente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/endereço-22.png"))); // NOI18N
         lblTituloIngrediente1.setText("Informações Extras");
 
-        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
-        jLabel1.setText("Descrição Extra (Não obrigatorio)");
+        lblDesc.setForeground(new java.awt.Color(30, 30, 30));
+        lblDesc.setText("Descrição Extra (Não obrigatorio)");
 
-        jTextArea1.setBackground(new java.awt.Color(180, 180, 180));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaExtras.setBackground(new java.awt.Color(180, 180, 180));
+        txaExtras.setColumns(20);
+        txaExtras.setRows(5);
+        sclExtras.setViewportView(txaExtras);
 
         javax.swing.GroupLayout pnlEnderecoLayout = new javax.swing.GroupLayout(pnlEndereco);
         pnlEndereco.setLayout(pnlEnderecoLayout);
@@ -175,12 +254,12 @@ public class TelaPedido extends javax.swing.JFrame {
             .addGroup(pnlEnderecoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(sclExtras)
                     .addGroup(pnlEnderecoLayout.createSequentialGroup()
                         .addGroup(pnlEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlEnderecoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jLabel1))
+                                .addComponent(lblDesc))
                             .addComponent(lblTituloIngrediente1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -191,9 +270,9 @@ public class TelaPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTituloIngrediente1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblDesc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(sclExtras)
                 .addContainerGap())
         );
 
@@ -257,20 +336,17 @@ public class TelaPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
+        Item combo = this.combo;
         Pedido pedido;
-        retornaPedido();
-        if (this.combo != null) {
-            pedido = new Pedido("Desc", "12B", this.combo, banco.getSessao());
+
+        if (combo != null) {
+            String mesa = javax.swing.JOptionPane.showInputDialog(this, "Digite o número da mesa:");    
+            pedido = new Pedido(txaExtras.getText(), mesa, this.combo, banco.getSessao());
         } else {
-            Item combo = new Item("Customizado", "Vs", 12.00, new ArrayList<String>() {{
-                add("Frango a Passarinho 500g");
-                add("Batata Frita 500g");
-                add("Calabresa Acebolada 500g");
-            }}, Categoria.PORCAO);
-            
-            pedido = new Pedido("Desc", "12B", combo, banco.getSessao());
+            pedido = retornaPedido();
         }
         
+        this.dispose();
         new TelaRecibo(pedido).setVisible(true);
     }//GEN-LAST:event_btnPedidoActionPerformed
 
@@ -302,11 +378,19 @@ public class TelaPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPedido;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chhCoca2l;
     private javax.swing.JCheckBox chkBatata;
-    private javax.swing.JCheckBox chkHamburguer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JCheckBox chkBatataEspecial;
+    private javax.swing.JCheckBox chkBoloChoco;
+    private javax.swing.JCheckBox chkCalabresaAcb;
+    private javax.swing.JCheckBox chkChantilly;
+    private javax.swing.JCheckBox chkCoca600ml;
+    private javax.swing.JCheckBox chkFrangoPss;
+    private javax.swing.JCheckBox chkHbgAmericano;
+    private javax.swing.JCheckBox chkHbgArtesanal;
+    private javax.swing.JCheckBox chkPudim;
+    private javax.swing.JCheckBox chkSorvete;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblSubtitulo;
@@ -317,23 +401,151 @@ public class TelaPedido extends javax.swing.JFrame {
     private javax.swing.JPanel pnlEndereco;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlIngredientes;
+    private javax.swing.JScrollPane sclExtras;
+    private javax.swing.JTextArea txaExtras;
     // End of variables declaration//GEN-END:variables
-    private void retornaPedido(){
-   
-    String mesa = javax.swing.JOptionPane.showInputDialog(this, "Digite o número da mesa:");        
-    String prato = "", infoExtras;
-        
     
-        if(chkHamburguer.isSelected()){
-            prato = prato +" Hamburguer\n ";
-        }
-        if(chkBatata.isSelected()){
-            prato = prato +" Batata \n";
-        }
+    private Pedido retornaPedido(){
+        String mesa = javax.swing.JOptionPane.showInputDialog(this, "Digite o número da mesa:");        
+        String infoExtras = txaExtras.getText();
         
-        
-        Pedido pedido = new Pedido(prato, mesa, this.combo, banco.getSessao());
-        banco.getPedidos().add(pedido);
+        Item combo = new Item("Customizado", infoExtras, 12.00, pegarIngredientes(), Categoria.PORCAO);
+        return new Pedido("Customizado", mesa, combo, banco.getSessao());
     }
+    
+    private List<String> pegarIngredientes() {
+        List<String> ingredientes = new ArrayList<>();
 
+        if (chhCoca2l.isSelected()) {
+            ingredientes.add("CocaCola 2l");
+        }
+        
+        if (chkBatata.isSelected()) {
+            ingredientes.add("Batata Frita");
+        }
+        
+        if (chkBatataEspecial.isSelected()) {
+            ingredientes.add("Batata Especial");
+        }
+        
+        if (chkBoloChoco.isSelected()) {
+            ingredientes.add("Bolo de Chocolate");
+        }
+        
+        if (chkCalabresaAcb.isSelected()) {
+            ingredientes.add("Calabresa");
+        }
+        
+        if (chkChantilly.isSelected()) {
+            ingredientes.add("Chantilly");
+        }
+        
+        if (chkCoca600ml.isSelected()) {
+            ingredientes.add("CocaCola 600ml");
+        }
+        
+        if (chkFrangoPss.isSelected()) {
+            ingredientes.add("Frango");
+        }
+        
+        if (chkHbgAmericano.isSelected()) {
+            ingredientes.add("Hamburguer Americano");
+        }
+        
+        if (chkHbgArtesanal.isSelected()) {
+            ingredientes.add("Hamburguer Artesanal");
+        }
+        
+        if (chkPudim.isSelected()) {
+            ingredientes.add("Pudim");
+        }
+        
+        if (chkSorvete.isSelected()) {
+            ingredientes.add("Sorvete");
+        }
+
+        return ingredientes;
+    }
+    
+    private void habilitarCampos(boolean ativo) {
+        chhCoca2l.setEnabled(ativo);
+        chkBatata.setEnabled(ativo);
+        chkBatataEspecial.setEnabled(ativo);
+        chkBoloChoco.setEnabled(ativo);
+        chkCalabresaAcb.setEnabled(ativo);
+        chkChantilly.setEnabled(ativo);
+        chkCoca600ml.setEnabled(ativo);
+        chkFrangoPss.setEnabled(ativo);
+        chkHbgAmericano.setEnabled(ativo);
+        chkHbgArtesanal.setEnabled(ativo);
+        chkPudim.setEnabled(ativo);
+        chkSorvete.setEnabled(ativo);
+    }
+    
+    private void marcarIngredientes(List<String> i) {
+        desmarcarIngredientes();
+        
+        if (i.contains("CocaCola 2l")) {
+            chhCoca2l.setSelected(true);
+        }
+        
+        if (i.contains("Batata Frita")) {
+            chkBatata.setSelected(true);
+        }
+        
+        if (i.contains("Batata Especial")) {
+            chkBatataEspecial.setSelected(true);
+        }
+        
+        if (i.contains("Bolo de Chocolate")) {
+            chkBoloChoco.setSelected(true);
+        }
+        
+        if (i.contains("Calabresa")) {
+            chkCalabresaAcb.setSelected(true);
+        }
+        
+        if (i.contains("Chantilly")) {
+            chkChantilly.setSelected(true);
+        }
+        
+        if (i.contains("CocaCola 600ml")) {
+            chkCoca600ml.setSelected(true);
+        }
+        
+        if (i.contains("Frango")) {
+            chkFrangoPss.setSelected(true);
+        }
+        
+        if (i.contains("Hamburguer Americano")) {
+            chkHbgAmericano.setSelected(true);
+        }
+        
+        if (i.contains("Hamburguer Artesanal")) {
+            chkHbgArtesanal.setSelected(true);
+        }
+        
+        if (i.contains("Pudim")) {
+            chkPudim.setSelected(true);
+        }
+        
+        if (i.contains("Sorvete")) {
+            chkSorvete.setSelected(true);
+        }
+    }
+    
+    private void desmarcarIngredientes() {
+        chhCoca2l.setSelected(false);
+        chkBatata.setSelected(false);
+        chkBatataEspecial.setSelected(false);
+        chkBoloChoco.setSelected(false);
+        chkCalabresaAcb.setSelected(false);
+        chkChantilly.setSelected(false);
+        chkCoca600ml.setSelected(false);
+        chkFrangoPss.setSelected(false);
+        chkHbgAmericano.setSelected(false);
+        chkHbgArtesanal.setSelected(false);
+        chkPudim.setSelected(false);
+        chkSorvete.setSelected(false);
+    }
 }

@@ -49,10 +49,7 @@ public class TelaGerenciamento extends javax.swing.JPanel {
         tblPedidos = new javax.swing.JTable();
         btnEnviar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lblTitulo1 = new javax.swing.JLabel();
-        lblSubtitulo1 = new javax.swing.JLabel();
-        lblImagem1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRecarregar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(220, 220, 220));
 
@@ -62,11 +59,11 @@ public class TelaGerenciamento extends javax.swing.JPanel {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(15, 15, 15));
-        lblTitulo.setText("Gerenciamento de pedidos");
+        lblTitulo.setText("Resumo dos pedidos");
         pnlHeader.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 7, -1, 27));
 
         lblSubtitulo.setForeground(new java.awt.Color(15, 15, 15));
-        lblSubtitulo.setText("Gerencie os pedidos recebidos");
+        lblSubtitulo.setText("pedidos em andamento");
         pnlHeader.add(lblSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 299, 20));
 
         lblImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -75,7 +72,6 @@ public class TelaGerenciamento extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +81,7 @@ public class TelaGerenciamento extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "id", "Mesa", "Pratos", "Info Extras"
+                "id", "Mesa", "Pedido", "Info Extras"
             }
         ) {
             Class[] types = new Class [] {
@@ -110,16 +106,13 @@ public class TelaGerenciamento extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPedidos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 590, 270));
-
-        btnEnviar.setBackground(new java.awt.Color(0, 153, 153));
+        btnEnviar.setBackground(new java.awt.Color(102, 10, 23));
         btnEnviar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
         btnEnviar.setText("Enviar Pedido");
         btnEnviar.setBorderPainted(false);
         btnEnviar.setFocusPainted(false);
         btnEnviar.addActionListener(this::btnEnviarActionPerformed);
-        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(144, 38, 53));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -128,25 +121,42 @@ public class TelaGerenciamento extends javax.swing.JPanel {
         btnCancelar.setBorderPainted(false);
         btnCancelar.setFocusPainted(false);
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
 
-        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(15, 15, 15));
-        lblTitulo1.setText("Resumo dos pedidos");
-        jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 32));
+        btnRecarregar.setBackground(new java.awt.Color(102, 10, 23));
+        btnRecarregar.setForeground(new java.awt.Color(220, 220, 220));
+        btnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atualizar.png"))); // NOI18N
+        btnRecarregar.setText("Atualizar Pedidos");
+        btnRecarregar.setBorderPainted(false);
+        btnRecarregar.setFocusPainted(false);
+        btnRecarregar.addActionListener(this::btnRecarregarActionPerformed);
 
-        lblSubtitulo1.setForeground(new java.awt.Color(15, 15, 15));
-        lblSubtitulo1.setText("Pedidos em andamento");
-        jPanel1.add(lblSubtitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 139, -1));
-
-        lblImagem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImagem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/engrenagem-24.png"))); // NOI18N
-        jPanel1.add(lblImagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 41, 51));
-
-        jButton1.setBackground(new java.awt.Color(102, 204, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\projetoFinal-prog2-certo\\src\\main\\resources\\atualizar.png")); // NOI18N
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 30, 30));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,7 +165,7 @@ public class TelaGerenciamento extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -165,7 +175,7 @@ public class TelaGerenciamento extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -225,23 +235,20 @@ public class TelaGerenciamento extends javax.swing.JPanel {
         id = (int) tblPedidos.getValueAt(posicaoTabela, 0);
     }//GEN-LAST:event_tblPedidosMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRecarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecarregarActionPerformed
         atualizarTabela();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRecarregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRecarregar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblImagem;
-    private javax.swing.JLabel lblImagem1;
     private javax.swing.JLabel lblSubtitulo;
-    private javax.swing.JLabel lblSubtitulo1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
@@ -254,8 +261,8 @@ public class TelaGerenciamento extends javax.swing.JPanel {
             modelo.addRow(new Object[]{
                 p.getId(),
                 p.getMesa(),
-                p.getDescricao(),
-                p.getCombo() != null ? p.getCombo().getNome() : "Sem combo"
+                p.getCombo().getNome(),
+                p.getDescricao()
             });
         }
     }

@@ -25,28 +25,28 @@ public class BancoDeDados {
     
     private BancoDeDados() {
         usuarios.add(new Usuario("Alexis", "123", TipoUsuario.ADMINISTRADOR));
-        usuarios.add(new Usuario("a", "a", TipoUsuario.ADMINISTRADOR));
+        usuarios.add(new Usuario("Jack", "123", TipoUsuario.ADMINISTRADOR));
         
         itens.add(new Item("Combo Artesanal", "Combo familia", 35.50, new ArrayList<String>() {{
-            add("Hamburgueres Artesanais");
-            add("Porção Batata 500g");
-            add("Coca 2l");
+            add("Hamburguer Artesanal");
+            add("Batata Especial");
+            add("CocaCola 2l");
         }}, Categoria.LANCHE));
-        
+
         itens.add(new Item("Batata Frita Especial", "Especial com Coca", 22.00, new ArrayList<String>() {{
-            add("Batata Frita Especial 500g");
-            add("Coca 600ml");
+            add("Batata Especial");
+            add("CocaCola 600ml");
         }}, Categoria.PORCAO));
-        
+
         itens.add(new Item("Porção Mista", "Varias Porções", 12.00, new ArrayList<String>() {{
-            add("Frango a Passarinho 500g");
-            add("Batata Frita 500g");
-            add("Calabresa Acebolada 500g");
+            add("Frango");
+            add("Batata Frita");
+            add("Calabresa");
         }}, Categoria.PORCAO));
-        
+
         itens.add(new Item("Petit Gateau", "Saboroso", 15.00, new ArrayList<String>() {{
             add("Bolo de Chocolate");
-            add("Bola de Sorvete");
+            add("Sorvete");
             add("Chantilly");
         }}, Categoria.SOBREMESA));
     }

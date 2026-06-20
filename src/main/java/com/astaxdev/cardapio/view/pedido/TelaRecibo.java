@@ -33,13 +33,29 @@ public class TelaRecibo extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         
-        this.pedido = pedido;
-        lblTitulo.setText(lblTitulo.getText().replace("{0}", String.valueOf(pedido.getId())));
-        banco.getPedidos().add(pedido);
+        setPedido(pedido);
     } 
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+        lblTitulo.setText(lblTitulo.getText().replace("{0}", String.valueOf(pedido.getId())));
+        banco.getPedidos().add(pedido);
+        
+        String resumo = "";
+        
+        resumo += "------------------------------------------\n";
+        resumo += "Pedido: " + pedido.getCombo().getNome() + "\n";
+        resumo += "Cliente: " + pedido.getCliente().getUsername() + "\n";
+        resumo += "Mesa: " + pedido.getMesa() + "\n";
+        resumo += "Extras: " + pedido.getDescricao() + "\n";
+        resumo += "------------------------------------------\n";
+        resumo += "Itens:\n";
+        
+        for (String item : pedido.getCombo().getIngredientes()) {
+            resumo += item + "\n";
+        }
+        
+        txaResumo.setText(resumo);
     }
 
     /**
@@ -58,6 +74,9 @@ public class TelaRecibo extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         pnlIngredientes = new javax.swing.JPanel();
         lblTituloIngrediente = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaResumo = new javax.swing.JTextArea();
+        btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -109,21 +128,46 @@ public class TelaRecibo extends javax.swing.JFrame {
         lblTituloIngrediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ingredientes-22.png"))); // NOI18N
         lblTituloIngrediente.setText("Resumo do Pedido");
 
+        txaResumo.setColumns(20);
+        txaResumo.setForeground(new java.awt.Color(15, 15, 15));
+        txaResumo.setRows(5);
+        txaResumo.setEnabled(false);
+        jScrollPane1.setViewportView(txaResumo);
+
+        btnConfirmar.setBackground(new java.awt.Color(123, 16, 32));
+        btnConfirmar.setForeground(new java.awt.Color(220, 220, 220));
+        btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/confirma-20.png"))); // NOI18N
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.setBorderPainted(false);
+        btnConfirmar.setFocusPainted(false);
+        btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
+
         javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
         pnlIngredientes.setLayout(pnlIngredientesLayout);
         pnlIngredientesLayout.setHorizontalGroup(
             pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIngredientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTituloIngrediente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addComponent(lblTituloIngrediente)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         pnlIngredientesLayout.setVerticalGroup(
             pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlIngredientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloIngrediente)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
@@ -159,6 +203,10 @@ public class TelaRecibo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -185,6 +233,8 @@ public class TelaRecibo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblSubtitulo;
     private javax.swing.JLabel lblTitulo;
@@ -192,5 +242,6 @@ public class TelaRecibo extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlIngredientes;
+    private javax.swing.JTextArea txaResumo;
     // End of variables declaration//GEN-END:variables
 }

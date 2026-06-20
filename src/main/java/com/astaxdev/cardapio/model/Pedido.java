@@ -16,10 +16,13 @@ public class Pedido {
     private String mesa;
     private Item combo;
     private Usuario cliente;
+    
+    public Pedido() {
+        this.id = contador++;
+    }
 
     public Pedido(String descricao, String mesa, Item combo, Usuario cliente) {
-        this.contador++;
-        this.id = this.contador;
+        this.id = contador++;
         this.descricao = descricao;
         this.mesa = mesa;
         this.combo = combo;
